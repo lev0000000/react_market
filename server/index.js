@@ -1,22 +1,22 @@
-const express = require('express')
+const express = require('express') // фреймворк для серверной части NodeJs
 
-const db = require('./db')
+const db = require('./db') // подключение к бд
 
-const models = require('./models/model')
+const models = require('./models/model') // покдлючение моделей бд
 
-const cors = require('cors')
+const cors = require('cors') 
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 5000 // порт через .env
 
-const fileUpload = require('express-fileupload')
+const fileUpload = require('express-fileupload') // пакет для express загрузка файлов
 
-const router = require('./routes/index')
+const router = require('./routes/index') // роутинг маршуты
 
-const app = express()
+const app = express() // инициализация app express
 
-const errorHandler = require('./middleware/ErrorHandlingMiddleware')
+const errorHandler = require('./middleware/ErrorHandlingMiddleware') //промежуточный пункт решений 
 
-const path = require('path')
+const path = require('path') // встроенный в NodeJs пакет для построения пути к файлам
 
 /**
  * По факту Express передает 4 аргуемента в функцию errorHandler
@@ -38,6 +38,9 @@ app.use(fileUpload({})) // для загрузки файлов
 app.use('/api', router) // для маршрутизации запросов
 app.use(errorHandler) // для обработки ошибок
 
+/**
+ * Запускаем App слушать порт из env.
+ */
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`)
@@ -45,10 +48,15 @@ app.listen(PORT, () => {
 
 
 
+/**
+ * функция подключения к бд 
+ * внутри компонента db мы подключаем пакет sequelize для работы с бд 
+ */
+
 const start = async () => {
   try {
-    await db.authenticate()
-    await db.sync()
+    await db.authenticate() //подключение к бд с данными из db
+    await db.sync() // синхронизация данных в бд c моделями
     console.log('Database connected')
   } catch (err) {
     console.error('Unable to connect to the database:', err)
