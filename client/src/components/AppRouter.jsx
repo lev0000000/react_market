@@ -6,8 +6,8 @@ import { Context } from "../main";
 
 export default function AppRouter() {
 
-  const {user,devices} = useContext(Context)
-  console.log(devices)
+  const {user,device} = useContext(Context)
+  console.log(device)
 
   const isAuth = false;
   return (
