@@ -5,6 +5,6 @@ const typeController = require('../controllers/typeController')
 
 router.post('/create', checkRole('ADMIN'), typeController.create)
 
-router.get('/all', typeController.getAll)
+router.get('/', typeController.getAll)
 
 module.exports = router

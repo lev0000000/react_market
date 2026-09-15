@@ -8,12 +8,13 @@ import { DEVICE_ROUTE } from "../utils/consts";
 
 const DeviceItem = ({ device }) => {
     const navigate = useNavigate();    
+    console.log(device.img);
     
   return (
     <>
       <Col md={3} onClick={()=> navigate(DEVICE_ROUTE + '/' + device.id)}>
         <Card className={'mb-5'} style={{ width: 150, cursor: "pointer" }} border={"light"}>
-          <Image width={150} height={150} src={device.img} />
+          <Image width={150} height={150} src={import.meta.env.VITE_API_URL + device.img} />
           <div>
             <div>{device.name}</div>
             <div>Цена: {device.price}</div>

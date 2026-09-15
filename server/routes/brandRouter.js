@@ -3,6 +3,6 @@ const brandController = require('../controllers/brandController')
 
 router.post('/create', brandController.create)
 
-router.get('/all', brandController.getAll)
+router.get('/', brandController.getAll)
 
 module.exports = router

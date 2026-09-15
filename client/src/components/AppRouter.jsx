@@ -7,9 +7,8 @@ import { Context } from "../main";
 export default function AppRouter() {
 
   const {user,device} = useContext(Context)
-  console.log(device)
 
-  const isAuth = false;
+  const isAuth = true;
   return (
     <Routes>
       {isAuth &&
